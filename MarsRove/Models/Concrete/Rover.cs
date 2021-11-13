@@ -39,7 +39,28 @@ namespace MarsRove.Models.Concrete
         }
         public void Process(string commands)
         {
-           
+            
+        }
+        public void Move(string direct)
+        {
+            switch (direct)
+            {
+                case "N":
+                    y++;
+                    break;
+                case "E":
+                    x++;
+                    break;
+                case "S":
+                    x--;
+                    break;
+                case "W":
+                    y--;
+                    break;
+                default:
+                    break;
+            }
+
         }
         public void TurnLeft()
         {
@@ -68,6 +89,15 @@ namespace MarsRove.Models.Concrete
             {
                 case "N":
                     direction = "E";
+                    break;
+                case "E":
+                    direction = "W";
+                    break;
+                case "S":
+                    direction ="N";
+                    break;
+                case "W":
+                    direction = "S";
                     break;
                 default:
                     break;
