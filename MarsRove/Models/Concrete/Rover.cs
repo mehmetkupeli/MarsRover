@@ -41,12 +41,21 @@ namespace MarsRove.Models.Concrete
         {
            
         }
-        public void TurnLeft()
+        private void TurnLeft()
         {
-            switch (direction)
+            switch (RoverDirection)
             {
-                case "N":
-                    direction = "S";
+                case Directions.N:
+                    RoverDirection = Directions.S;
+                    break;
+                case Directions.E:
+                    RoverDirection = Directions.N;
+                    break;
+                case Directions.S:
+                    RoverDirection = Directions.W;
+                    break;
+                case Directions.W:
+                    RoverDirection = Directions.E;
                     break;
                 default:
                     break;
