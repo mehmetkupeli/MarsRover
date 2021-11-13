@@ -43,11 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Directions.cs" />
+    <Compile Include="Models\Abstract\IGround.cs" />
+    <Compile Include="Models\Abstract\IPosition.cs" />
+    <Compile Include="Models\Abstract\IRover.cs" />
+    <Compile Include="Models\Concrete\Ground.cs" />
+    <Compile Include="Models\Concrete\Position.cs" />
+    <Compile Include="Models\Concrete\Rover.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
