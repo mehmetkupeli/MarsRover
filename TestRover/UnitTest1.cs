@@ -14,5 +14,12 @@ namespace TestRover
             testRover.TurnLeft();
             Assert.Equal("S",testRover.direction);   
         }
+        [Fact]
+        public void TurnRightTest()
+        {
+            Rover testRover = new Rover("2 2 N");
+            testRover.TurnRight();
+            Assert.Equal("E", testRover.direction);
+        }
     }
 }
