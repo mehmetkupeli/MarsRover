@@ -21,7 +21,13 @@ namespace TestRover
             testRover.TurnRight();
             Assert.Equal("E", testRover.direction);
         }
-        
-       
+
+        [Fact]
+        public void MoveTest()
+        {
+            Rover testRover = new Rover("2 2 N");
+            testRover.Move("N");
+            Assert.Equal("3", testRover.y.ToString());
+        }
     }
 }
