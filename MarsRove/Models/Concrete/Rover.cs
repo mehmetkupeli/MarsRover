@@ -27,30 +27,29 @@ namespace MarsRove.Models.Concrete
             set;
         }
         //Add Constructor
-        public Rover(IGround roverGround, IPosition roverPosition, Directions roverDirection)
+        public int x;
+        public int y;
+        public int z;
+        public string direction;
+        public Rover(string location)
         {
-            RoverGround = roverGround;
-            RoverPosition = roverPosition;
-            RoverDirection = roverDirection;
+            Int32.TryParse(location.Split(' ')[0], out x);
+            Int32.TryParse(location.Split(' ')[1], out y);
+            direction = location.Split(' ')[2];
         }
         public void Process(string commands)
         {
-            foreach (var cmd in commands)
+           
+        }
+        public void TurnLeft()
+        {
+            switch (direction)
             {
-                switch (cmd)
-                {
-                    case ('L'):
-                        TurnLeft();
-                        break;
-                    case ('R'):
-                        TurnRight();
-                        break;
-                    case ('M'):
-                        Move();
-                        break;
-                    default:
-                        throw new ArgumentException(string.Format("Invalid value: {0}", cmd));
-                }
+                case "N":
+                    direction = "S";
+                    break;
+                default:
+                    break;
             }
         }
     }
