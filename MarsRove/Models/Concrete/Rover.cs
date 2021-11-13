@@ -31,77 +31,99 @@ namespace MarsRove.Models.Concrete
         public int y;
         public int z;
         public string direction;
-        public Rover(string location)
+        public Rover(IGround roverGround, IPosition roverPosition, Directions roverDirection)
         {
-            Int32.TryParse(location.Split(' ')[0], out x);
-            Int32.TryParse(location.Split(' ')[1], out y);
-            direction = location.Split(' ')[2];
+            RoverGround = roverGround;
+            RoverPosition = roverPosition;
+            RoverDirection = roverDirection;
         }
         public void Process(string commands)
         {
-            
-        }
-        public void Move(string direct)
-        {
-            switch (direct)
+            foreach (var cmd in commands)
             {
-                case "N":
-                    y++;
-                    break;
-                case "E":
-                    x++;
-                    break;
-                case "S":
-                    x--;
-                    break;
-                case "W":
-                    y--;
-                    break;
-                default:
-                    break;
+                switch (cmd)
+                {
+                    case ('L'):
+                        TurnLeft();
+                        break;
+                    case ('R'):
+                        TurnRight();
+                        break;
+                    case ('M'):
+                        Move();
+                        break;
+                    default:
+                        throw new ArgumentException(string.Format("Invalid value: {0}", cmd));
+                }
             }
-
         }
-        public void TurnLeft()
+
+        private void TurnLeft()
         {
-            switch (direction)
+            switch (RoverDirection)
             {
-                case "N":
-                    direction = "S";
+                case Directions.N:
+                    RoverDirection = Directions.S;
                     break;
-                case "E":
-                    direction = "N";
+                case Directions.E:
+                    RoverDirection = Directions.N;
                     break;
-                case "S":
-                    direction ="W";
+                case Directions.S:
+                    RoverDirection = Directions.W;
                     break;
-                case "W":
-                    direction = "E";
+                case Directions.W:
+                    RoverDirection = Directions.E;
                     break;
                 default:
                     break;
             }
         }
 
-        public void TurnRight()
+        private void TurnRight()
         {
-            switch (direction)
+            switch (RoverDirection)
             {
-                case "N":
-                    direction = "E";
+                case Directions.N:
+                    RoverDirection = Directions.E;
                     break;
-                case "E":
-                    direction = "W";
+                case Directions.E:
+                    RoverDirection = Directions.W;
                     break;
-                case "S":
-                    direction ="N";
+                case Directions.S:
+                    RoverDirection = Directions.N;
                     break;
-                case "W":
-                    direction = "S";
+                case Directions.W:
+                    RoverDirection = Directions.S;
                     break;
                 default:
                     break;
             }
+        }
+
+        private void Move()
+        {
+            switch (RoverDirection)
+            {
+                case Directions.N:
+                    RoverPosition.PosY++;
+                    break;
+                case Directions.E:
+                    RoverPosition.PosX++;
+                    break;
+                case Directions.S:
+                    RoverPosition.PosX--;
+                    break;
+                case Directions.W:
+                    RoverPosition.PosY--;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} {1} {2}", RoverPosition.PosX, RoverPosition.PosY, RoverDirection);
         }
     }
 }
