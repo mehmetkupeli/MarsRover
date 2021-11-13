@@ -8,26 +8,33 @@ namespace TestRover
     public class UnitTest1
     {
         [Fact]
-        public void TurnLeftTest()
+        public void SpinLeft()
         {
-            Rover testRover = new Rover("2 2 N");
-            testRover.TurnLeft();
-            Assert.Equal("S",testRover.direction);   
-        }
-        [Fact]
-        public void TurnRightTest()
-        {
-            Rover testRover = new Rover("2 2 N");
-            testRover.TurnRight();
-            Assert.Equal("E", testRover.direction);
+            Ground testGround = new Ground(new Position(5, 5));
+            Rover testRover = new Rover(testGround, new Position(1, 1), Directions.N);
+            testRover.Process("LLLL");
+            string testResult = testRover.ToString();
+            Assert.Equal("1 1 N", testResult);
         }
 
         [Fact]
-        public void MoveTest()
+        public void SpinRight()
         {
-            Rover testRover = new Rover("2 2 N");
-            testRover.Move("N");
-            Assert.Equal("3", testRover.y.ToString());
+            Ground testGround = new Ground(new Position(5, 5));
+            Rover testRover = new Rover(testGround, new Position(1, 1), Directions.N);
+            testRover.Process("RRRR");
+            string testResult = testRover.ToString();
+            Assert.Equal("1 1 N", testResult);
+        }
+
+        [Fact]
+        public void SpinMove()
+        {
+            Ground testGround = new Ground(new Position(5, 5));
+            Rover testRover = new Rover(testGround, new Position(1, 1), Directions.N);
+            testRover.Process("MMMM");
+            string testResult = testRover.ToString();
+            Assert.Equal("1 5 N", testResult);
         }
     }
 }
