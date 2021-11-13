@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarsRove.Models.Abstract
+namespace MarsRove.Models.Concrete
 {
-    public interface IPosition
+    public class Rover
     {
-        int PosX { get; set; }
-        int PosY { get; set; }
     }
 }
